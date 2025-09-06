@@ -1,0 +1,46 @@
+# config.yaml
+database:
+ host: ${DB_HOST}
+ database: advancedsql
+ user: ${DB_USER}
+ password: ${DB_PASSWORD}
+ port: ${DB_PORT}
+
+
+s3:
+ bucket_name: ${S3_BUCKET_NAME}
+ region: ${AWS_REGION}
+ files:
+   JSON/products.json: lnd_products_json
+   JSON/sales.json: lnd_sales_json
+   CSV/customers.csv: lnd_customers_csv
+   CSV/products.csv: lnd_products_csv
+   CSV/sales.csv: lnd_sales_csv
+
+
+api:
+ endpoints:
+   https://dummyjson.com/products: lnd_products_api
+   https://dummyjson.com/users: lnd_users_api
+
+
+schemas:
+ landing_schema: landing
+ staging_schema: staging
+ transform_schema: transform
+ target_schema: target
+
+
+entities:
+ products:
+   staging_view: stg_products
+   temp_table: tmp_products
+   target_table: dim_products
+ users:
+   staging_view: stg_users
+   temp_table: tmp_users
+   target_table: dim_users
+ sales:
+   staging_view: stg_sales
+   temp_table: tmp_sales
+   target_table: fact_sales
